@@ -8,9 +8,9 @@ const createUser = async (data) => {
     const user = new User(data);
     await user.save();
     const token = jwt.sign({ userId: user._id }, config.get('tokenSecret'));
-    return { token };
+    return { token, user };
   } catch (err) {
-    return Promise.resolve(new ServerException('Internal Server Error'));
+    throw new ServerException('Internal Server Error');
   }
 };
 

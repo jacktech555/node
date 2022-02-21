@@ -6,8 +6,8 @@ const config = require('config');
 const signinUser = async (req, res, next) => {
   userService
     .signinService(req.body)
-    .then((token) => {
-      res.status(201).json(token);
+    .then((result) => {
+      res.status(201).json(result);
       res.send();
     })
     .catch((e) => {

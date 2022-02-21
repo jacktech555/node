@@ -3,7 +3,7 @@ const userService = require('../../services/user');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-const createUser = async (req, res, next) => {
+const createUser = async (req, res) => {
   userService
     .createUserService(req.body)
     .then((token) => {

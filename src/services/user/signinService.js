@@ -21,7 +21,7 @@ const signinUser = async (data) => {
   try {
     await user.comparePassword(password);
     const token = jwt.sign({ userId: user._id }, config.get('tokenSecret'));
-    return { token };
+    return { token, user };
   } catch (e) {
     throw new BadRequestException('Invalid password or email');
   }
