@@ -4,10 +4,11 @@ const updateUser = (req, res) => {
   userService
     .updateUserService(req.params.id, req.body)
     .then((result) => {
-      res.status(422).json(result).send();
+      res.status(200).json(result).send();
     })
     .catch((e) => {
-      res.status(e.statusCode).send(e);
+      console.log('controller error', e);
+      res.status(e.statusCode).send(e.errorDetails);
     });
 };
 

@@ -8,7 +8,7 @@ const getUsers = (req, res) => {
       res.status(200).json(result).send();
     })
     .catch((e) => {
-      res.status(e.statusCode).send(e);
+      res.status(e.statusCode).send(e.errorDetails);
     });
 };
 

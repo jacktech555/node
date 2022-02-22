@@ -1,16 +1,32 @@
 const User = require('../../models/User');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { ServerException } = require('../../utilities/exceptions');
+const {
+  ConflictException,
+  UnprocessableEntity,
+} = require('../../utilities/exceptions');
+const { use } = require('../../controllers/user');
 
 const createUser = async (data) => {
+  const { email, password, salary } = data;
+  if (!email || !password)
+    throw new UnprocessableEntity('Must Provide Email And Password');
   try {
     const user = new User(data);
     await user.save();
     const token = jwt.sign({ userId: user._id }, config.get('tokenSecret'));
-    return { token, user };
+    return {
+      token,
+      data: {
+        id: user._id,
+        email: user.email,
+        salary: user.salary,
+      },
+    };
   } catch (err) {
-    throw new ServerException('Internal Server Error');
+    throw new ConflictException(
+      'Account already exists! Try with another email id'
+    );
   }
 };
 

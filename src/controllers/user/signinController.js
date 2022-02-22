@@ -7,11 +7,11 @@ const signinUser = async (req, res, next) => {
   userService
     .signinService(req.body)
     .then((result) => {
-      res.status(201).json(result);
+      res.status(200).json(result);
       res.send();
     })
     .catch((e) => {
-      res.send(e);
+      res.status(e.statusCode).send(e.errorDetails);
     });
 };
 

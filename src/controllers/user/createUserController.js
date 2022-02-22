@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
       res.send();
     })
     .catch((e) => {
-      res.send(e);
+      res.status(e.statusCode).send(e.errorDetails);
     });
 };
 
