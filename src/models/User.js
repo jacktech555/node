@@ -14,6 +14,12 @@ const userSchema = new mongoose.Schema({
   salary: {
     type: Number,
   },
+  createdAt: {
+    type: Date,
+  },
+  updatedAt: {
+    type: Date,
+  },
 });
 
 userSchema.pre('save', function (next) {

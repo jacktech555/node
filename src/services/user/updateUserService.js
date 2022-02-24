@@ -26,6 +26,10 @@ const updateUserService = async (id, data) => {
     }
   }
   try {
+    if ('createdAt' in data) {
+      delete data.createdAt;
+    }
+    data.updatedAt = new Date();
     Object.assign(result, data);
     result.save();
   } catch (e) {

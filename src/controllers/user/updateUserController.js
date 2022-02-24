@@ -7,7 +7,6 @@ const updateUser = (req, res) => {
       res.status(200).json(result).send();
     })
     .catch((e) => {
-      console.log('controller error', e);
       res.status(e.statusCode).send(e.errorDetails);
     });
 };

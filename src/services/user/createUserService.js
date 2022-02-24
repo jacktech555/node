@@ -13,6 +13,7 @@ const createUser = async (data) => {
     throw new UnprocessableEntity('Must Provide Email And Password');
   try {
     const user = new User(data);
+    user.createdAt = user.updatedAt = new Date();
     await user.save();
     const token = jwt.sign({ userId: user._id }, config.get('tokenSecret'));
     return {
