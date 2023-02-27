@@ -7,7 +7,7 @@ const controllers = require('./controllers/index');
 const app = express();
 app.use(bodyParser.json());
 app.use(controllers);
-app.listen(config.get('port'), () => {
+app.listen(3000, () => {
   console.log(`listening to port ${config.get('port')}`);
 });
 mongoDbConnection();
